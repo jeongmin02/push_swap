@@ -1,48 +1,10 @@
 #include "push_swap.h"
 #include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-
-void	fill_stack(char *argv[], t_info *info)
-{
-	t_stack	*tmp;
-	char	**split_num;
-	
-	int i;
-	int j;
-
-	i = 1;	
-	while (argv[i])
-	{
-		split_num = ft_split(argv[i], ' ');
-		j = 0;
-		while (split_num[j])
-		{
-			stack_push_a(ft_atoi(split_num[j]), info);
-			stack_push_copy_a(ft_atoi(split_num[j]), info);
-			info->size_a++;
-			j++;
-		}
-		i++;
-	}
-	// while (info->top_a)
-	// {
-	// 	printf("%d\n", info->top_a->num);
-	// 	info->top_a = info->top_a->next;
-	// }
-	// printf("------\n");
-	// printf("%d\n", info->size_a);
-	// while (info->top_sort_a)
-	// {
-	// 	printf("%d\n", info->top_sort_a->num);
-	// 	info->top_sort_a = info->top_sort_a->next;
-	// }
-}
 
 void	stack_push_a(int split_num, t_info *info)
 {
 	t_stack	*stack_a;
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	stack_a = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack_a)
@@ -67,7 +29,7 @@ void	stack_push_a(int split_num, t_info *info)
 void	stack_push_copy_a(int split_num, t_info *info)
 {
 	t_stack	*copy_a;
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	copy_a = (t_stack *)malloc(sizeof(t_stack));
 	if (!copy_a)
@@ -86,6 +48,29 @@ void	stack_push_copy_a(int split_num, t_info *info)
 			tmp = tmp->next;
 		tmp->next = copy_a;
 		info->bottom_copy_a = copy_a;
+	}
+}
+
+void	fill_stack(char *argv[], t_info *info)
+{
+	t_stack	*tmp;
+	char	**split_num;
+	int		i;
+	int		j;
+
+	i = 1;
+	while (argv[i])
+	{
+		split_num = ft_split(argv[i], ' ');
+		j = 0;
+		while (split_num[j])
+		{
+			stack_push_a(ft_atoi(split_num[j]), info);
+			stack_push_copy_a(ft_atoi(split_num[j]), info);
+			info->size_a++;
+			j++;
+		}
+		i++;
 	}
 }
 
@@ -114,11 +99,6 @@ void	sort_stack(t_info *info)
 		}
 		i++;
 	}
-	// while (info->top_copy_a)
-	// {
-	// 	printf("%d\n", info->top_copy_a->num);
-	// 	info->top_copy_a = info->top_copy_a->next;
-	// }
 }
 
 void	indexing_sort_stack(t_info *info)
@@ -130,7 +110,7 @@ void	indexing_sort_stack(t_info *info)
 
 	i = 0;
 	a_tmp = info->top_a;
-	while(i < info->size_a)
+	while (i < info->size_a)
 	{
 		copy_a_tmp = info->top_copy_a;
 		j = 0;
@@ -139,7 +119,7 @@ void	indexing_sort_stack(t_info *info)
 			if (a_tmp->num == copy_a_tmp->num)
 			{
 				a_tmp->num = j;
-				break;
+				break ;
 			}
 			j++;
 			copy_a_tmp = copy_a_tmp->next;
@@ -147,10 +127,5 @@ void	indexing_sort_stack(t_info *info)
 		a_tmp = a_tmp->next;
 		i++;
 	}
-	free(info->top_copy_a);
-	// while (info->top_a)
-	// {
-	// 	printf("%d\n", info->top_a->num);
-	// 	info->top_a = info->top_a->next;
-	// }
+	free_copy_a_tmp(info);
 }

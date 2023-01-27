@@ -21,56 +21,60 @@ int	a_to_b(t_info *info, int num, int chunk)
 			num++;
 		}
 		else if (info->top_a->num > num + chunk)
-		{
-			// if (num < info->size_a / 2 && num >= 0)
-			// 	rra(info);
-			// else
 			ra(info);
-		}
 		i++;
 	}
 	return (num);
 }
 
-void	sort_b(t_info *info, int num)
+int	find_b(t_info *info, int num)
 {
 	int		i;
-	int		b_stack_size;
 	t_stack	*tmp;
 
 	i = 0;
-	b_stack_size = info->size_b;
 	tmp = info->top_b;
 	while (tmp)
 	{
 		if (tmp->num == num)
-			break;
+			break ;
 		tmp = tmp->next;
 		i++;
 	}
-	while (i > 0 && i < b_stack_size)
+	return (i);
+}
+
+void	sort_b(t_info *info, int num)
+{
+	int		b_stack_size;
+	t_stack	*tmp;
+
+	b_stack_size = info->size_b;
+	while (num > 0 && num < b_stack_size)
 	{
-		if (i <= b_stack_size / 2)
+		if (num <= b_stack_size / 2)
 		{
 			rb(info);
-			i--;
+			num--;
 		}
 		else
 		{
 			rrb(info);
-			i++;
+			num++;
 		}
 	}
 }
 
 void	b_to_a(t_info *info)
 {
+	int	num;
 	int	i;
 
 	i = info->size_b - 1;
 	while (i >= 0)
 	{
-		sort_b(info, i);
+		num = find_b(info, i);
+		sort_b(info, num);
 		pa(info);
 		i--;
 	}
@@ -83,7 +87,12 @@ void	sand_watch(t_info *info)
 	int	stack_a_size;
 
 	stack_a_size = info->size_a;
-	if (stack_a_size < 500)
+	if (stack_a_size < 6)
+	{
+		hard_sort(info);
+		return ;
+	}
+	else if (stack_a_size < 500)
 		chunk = 15;
 	else if (stack_a_size < 1000)
 		chunk = 30;
@@ -95,9 +104,6 @@ void	sand_watch(t_info *info)
 		chunk = 150;
 	num = 0;
 	while (num < stack_a_size)
-	{
 		num = a_to_b(info, num, chunk);
-		// num += chunk;
-	}
 	b_to_a(info);
 }

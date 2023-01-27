@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <unistd.h>
 #include <stdlib.h>
 
 int	ft_isspace(char c)
@@ -17,7 +16,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int ft_issign(char c)
+int	ft_issign(char c)
 {
 	if (c == '+' || c == '-')
 		return (1);
@@ -52,9 +51,17 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
-void	print_error(int num)
+void	free_copy_a_tmp(t_info *info)
 {
-	if (num == 1)
-		write(1, "ERROR\n", 6);
-	exit(1);
+	t_stack	*tmp;
+	t_stack	*copy_a_tmp;
+
+	copy_a_tmp = info->top_copy_a;
+	while (copy_a_tmp)
+	{
+		tmp = copy_a_tmp->next;
+		free(copy_a_tmp);
+		copy_a_tmp = tmp;
+	}
+	copy_a_tmp = NULL;
 }

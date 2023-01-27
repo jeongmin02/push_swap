@@ -1,8 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-
 typedef struct s_stack
 {
 	int				num;
@@ -21,24 +19,18 @@ typedef struct s_info
 	struct s_stack	*bottom_copy_a;
 }	t_info;
 
-t_info	*ft_info_new();
+int		ft_isspace(char c);
+int		ft_isdigit(int c);
+int		ft_issign(char c);
+int		ft_atoi(const char *str);
+void	print_error(int num);
+void	free_copy_a_tmp(t_info *info);
+char	**ft_split(char const *s, char c);
 void	fill_stack(char *argv[], t_info *info);
-void	stack_push_a(int split_num, t_info *info);
-void	stack_push_copy_a(int split_num, t_info *info);
-void	check_argv(char *argv[]);
-int	ft_isspace(char c);
-int ft_issign(char c);
 void	sort_stack(t_info *info);
 void	indexing_sort_stack(t_info *info);
-char	**ft_split(char const *s, char c);
-int	ft_isdigit(int c);
-void	ft_check_array_sort(int *array, int size, int i);
-int get_str_size(int argc, char *argv[]);
-int	ft_atoi(const char *str);
-void	print_error(int num);
 void	sand_watch(t_info *info);
-
-void	test_print(t_info *info);
+void	hard_sort(t_info *info);
 
 void	pa(t_info *info);
 void	pb(t_info *info);

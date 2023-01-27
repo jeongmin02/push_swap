@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-t_info	*ft_info_new()
+t_info	*ft_info_new(void)
 {
 	t_info	*info;
 
@@ -15,7 +15,6 @@ t_info	*ft_info_new()
 	info->size_b = 0;
 	info->top_b = NULL;
 	info->bottom_b = NULL;
-	
 	return (info);
 }
 
@@ -30,7 +29,7 @@ void	check_argv(char *argv[])
 		j = 0;
 		while (argv[i][j])
 		{
-			if (!ft_isspace(argv[i][j]) && !ft_isdigit(argv[i][j]) 
+			if (!ft_isspace(argv[i][j]) && !ft_isdigit(argv[i][j])
 				&& !ft_issign(argv[i][j]))
 			{
 				print_error(1);
@@ -43,29 +42,37 @@ void	check_argv(char *argv[])
 	return ;
 }
 
-void	test_print(t_info *info)
+void	check_duplicate(char *argv[])
 {
-	t_stack	*tmp;
+	int	i;
+	int	j;
 
-	tmp = info->top_a;
-	printf("A | ");
-	while (tmp)
+	i = 1;
+	while (argv[i])
 	{
-		printf("%d ", tmp->num);
-		tmp = tmp->next;
+		j = i + 1;
+		while (argv[j])
+		{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+			{
+				print_error(1);
+				return ;
+			}
+			j++;
+		}
+		i++;
 	}
-	printf("\n");
-	tmp = info->top_b;
-	printf("B | ");
-	while (tmp)
-	{
-		printf("%d ", tmp->num);
-		tmp = tmp->next;
-	}
-	printf("\n");
+	return ;
 }
 
-int main(int argc, char *argv[])
+void	print_error(int num)
+{
+	if (num == 1)
+		write(1, "ERROR\n", 6);
+	exit(1);
+}
+
+int	main(int argc, char *argv[])
 {
 	t_info	*info;
 
@@ -73,10 +80,10 @@ int main(int argc, char *argv[])
 		print_error(-1);
 	info = ft_info_new();
 	check_argv(argv);
+	check_duplicate(argv);
 	fill_stack(argv, info);
 	sort_stack(info);
 	indexing_sort_stack(info);
 	sand_watch(info);
-	// test_print(info);
 	return (0);
 }

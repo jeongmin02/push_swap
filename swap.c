@@ -3,35 +3,33 @@
 
 void	sa(t_info *info)
 {
-	t_stack	*tmp;
+	int	tmp;
 
-	tmp = info->top_a;
-	info->top_a = info->top_a->next;
-	info->top_a->next = tmp;
+	tmp = info->top_a->num;
+	info->top_a->num = info->top_a->next->num;
+	info->top_a->next->num = tmp;
 	write(1, "sa\n", 3);
-	// test_print(info);
 }
 
 void	sb(t_info *info)
 {
-	t_stack	*tmp;
+	int	tmp;
 
-	tmp = info->top_b;
-	info->top_b = info->top_b->next;
-	info->top_b->next = tmp;
+	tmp = info->top_b->num;
+	info->top_b->num = info->top_b->next->num;
+	info->top_b->next->num = tmp;
 	write(1, "sb\n", 3);
-	// test_print(info);
 }
 
 void	ss(t_info *info)
 {
-	t_stack	*tmp;
+	int	tmp;
 
-	tmp = info->top_a;
-	info->top_a = info->top_a->next;
-	info->top_a->next = tmp;
-	tmp = info->top_b;
-	info->top_b = info->top_b->next;
-	info->top_b->next = tmp;
+	tmp = info->top_a->num;
+	info->top_a->num = info->top_a->next->num;
+	info->top_a->next->num = tmp;
+	tmp = info->top_b->num;
+	info->top_b->num = info->top_b->next->num;
+	info->top_b->next->num = tmp;
 	write(1, "ss\n", 3);
 }
