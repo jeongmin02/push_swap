@@ -5,8 +5,6 @@
 
 void	fill_stack(char *argv[], t_info *info)
 {
-	t_stack	*stack_a;
-	t_stack *copy_a;
 	t_stack	*tmp;
 	char	**split_num;
 	
@@ -20,8 +18,8 @@ void	fill_stack(char *argv[], t_info *info)
 		j = 0;
 		while (split_num[j])
 		{
-			stack_a = stack_push_a(ft_atoi(split_num[j]), info);
-			copy_a = stack_push_copy_a(ft_atoi(split_num[j]), info);
+			stack_push_a(ft_atoi(split_num[j]), info);
+			stack_push_copy_a(ft_atoi(split_num[j]), info);
 			info->size_a++;
 			j++;
 		}
@@ -41,14 +39,14 @@ void	fill_stack(char *argv[], t_info *info)
 	// }
 }
 
-t_stack	*stack_push_a(int split_num, t_info *info)
+void	stack_push_a(int split_num, t_info *info)
 {
 	t_stack	*stack_a;
 	t_stack *tmp;
 
 	stack_a = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack_a)
-		return (NULL);
+		print_error(-1);
 	stack_a->num = split_num;
 	stack_a->next = NULL;
 	if (!info->top_a)
@@ -66,14 +64,14 @@ t_stack	*stack_push_a(int split_num, t_info *info)
 	}
 }
 
-t_stack	*stack_push_copy_a(int split_num, t_info *info)
+void	stack_push_copy_a(int split_num, t_info *info)
 {
 	t_stack	*copy_a;
 	t_stack *tmp;
 
 	copy_a = (t_stack *)malloc(sizeof(t_stack));
 	if (!copy_a)
-		return (NULL);
+		print_error(-1);
 	copy_a->num = split_num;
 	copy_a->next = NULL;
 	if (!info->top_copy_a)

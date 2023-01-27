@@ -77,6 +77,6 @@ int main(int argc, char *argv[])
 	sort_stack(info);
 	indexing_sort_stack(info);
 	sand_watch(info);
-	test_print(info);
+	// test_print(info);
 	return (0);
 }

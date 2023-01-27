@@ -23,8 +23,8 @@ typedef struct s_info
 
 t_info	*ft_info_new();
 void	fill_stack(char *argv[], t_info *info);
-t_stack	*stack_push_a(int split_num, t_info *info);
-t_stack	*stack_push_copy_a(int split_num, t_info *info);
+void	stack_push_a(int split_num, t_info *info);
+void	stack_push_copy_a(int split_num, t_info *info);
 void	check_argv(char *argv[]);
 int	ft_isspace(char c);
 int ft_issign(char c);

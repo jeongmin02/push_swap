@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	a_to_b(t_info *info, int num, int chunk)
+int	a_to_b(t_info *info, int num, int chunk)
 {
 	int	i;
 	int	stack_a_size;
@@ -10,16 +10,26 @@ void	a_to_b(t_info *info, int num, int chunk)
 	while (i < stack_a_size)
 	{
 		if (info->top_a->num <= num)
+		{
 			pb(info);
+			num++;
+		}
 		else if (info->top_a->num > num && info->top_a->num <= num + chunk)
 		{
 			pb(info);
 			rb(info);
+			num++;
 		}
 		else if (info->top_a->num > num + chunk)
+		{
+			// if (num < info->size_a / 2 && num >= 0)
+			// 	rra(info);
+			// else
 			ra(info);
+		}
 		i++;
 	}
+	return (num);
 }
 
 void	sort_b(t_info *info, int num)
@@ -31,8 +41,10 @@ void	sort_b(t_info *info, int num)
 	i = 0;
 	b_stack_size = info->size_b;
 	tmp = info->top_b;
-	while (tmp->num != num)
+	while (tmp)
 	{
+		if (tmp->num == num)
+			break;
 		tmp = tmp->next;
 		i++;
 	}
@@ -84,8 +96,8 @@ void	sand_watch(t_info *info)
 	num = 0;
 	while (num < stack_a_size)
 	{
-		a_to_b(info, num, chunk);
-		num += chunk;
+		num = a_to_b(info, num, chunk);
+		// num += chunk;
 	}
 	b_to_a(info);
 }

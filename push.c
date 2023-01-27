@@ -24,7 +24,8 @@ void	pa(t_info *info)
 	}
 	info->size_a += 1;
 	info->size_b -= 1;
-	write(1, "pa\n", 3);
+	write(1, "pa", 2);
+	write(1, "\n", 1);
 	// test_print(info);
 }
 
@@ -50,6 +51,7 @@ void	pb(t_info *info)
 	}
 	info->size_b += 1;
 	info->size_a -= 1;
-	write(1, "pb\n", 3);
+	write(1, "pb", 2);
+	write(1, "\n", 1);
 	// test_print(info);
 }
