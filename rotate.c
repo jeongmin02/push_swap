@@ -13,8 +13,7 @@ void	ra(t_info *info)
 	info->bottom_a->next = tmp;
 	info->bottom_a = tmp;
 	info->bottom_a->next = NULL;
-	write(1, "ra", 2);
-	write(1, "\n", 1);
+	write(1, "ra\n", 3);
 	// test_print(info);
 }
 
@@ -29,8 +28,7 @@ void	rb(t_info *info)
 	info->bottom_b->next = tmp;
 	info->bottom_b = tmp;
 	info->bottom_b->next = NULL;
-	write(1, "rb", 2);
-	write(1, "\n", 1);
+	write(1, "rb\n", 3);
 	// test_print(info);
 }
 

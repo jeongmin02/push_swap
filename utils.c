@@ -47,7 +47,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	res = res * sign;
-	write(1, &str[i], 1);
 	if (str[i] != '\0' || i > 10 || res > 2147483647 || res < -2147483648)
 		print_error(1);
 	return (res);
