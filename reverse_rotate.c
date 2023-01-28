@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jerhee <jerhee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/28 15:08:39 by jerhee            #+#    #+#             */
+/*   Updated: 2023/01/28 15:08:39 by jerhee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <unistd.h>
 #include <stdlib.h>
@@ -53,6 +65,6 @@ void	rrr(t_info *info)
 	tmp->next = NULL;
 	info->bottom_b->next = info->top_b;
 	info->top_b = info->bottom_b;
-	info->bottom_b = tmp;	
+	info->bottom_b = tmp;
 	write(1, "rrr\n", 4);
 }
