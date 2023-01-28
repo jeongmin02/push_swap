@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hard_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jerhee <jerhee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: changhle <changhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:08:17 by jerhee            #+#    #+#             */
-/*   Updated: 2023/01/28 15:08:18 by jerhee           ###   ########.fr       */
+/*   Updated: 2023/01/28 17:46:34 by changhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	hard_sort(t_info *info)
 	tmp = info->top_a;
 	while (info->top_a && info->size_a > 3)
 	{
-		if (info->top_a->num < (info->size_a / 2))
+		if (info->top_a->num < info->size_a + info->size_b - 3)
 			pb(info);
 		else
 			ra(info);

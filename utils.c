@@ -58,7 +58,7 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	res = res * sign;
-	if (str[i] != '\0' || i > 10 || res > 2147483647 || res < -2147483648)
+	if (str[i] != '\0' || res > 2147483647 || res < -2147483648)
 		print_error(1);
 	return (res);
 }
