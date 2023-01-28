@@ -21,7 +21,12 @@ int	a_to_b(t_info *info, int num, int chunk)
 			num++;
 		}
 		else if (info->top_a->num > num + chunk)
-			ra(info);
+		{
+			if (info->bottom_a->num <= num + chunk)
+				rra(info);
+			else
+				ra(info);
+		}
 		i++;
 	}
 	return (num);
@@ -47,7 +52,6 @@ int	find_b(t_info *info, int num)
 void	sort_b(t_info *info, int num)
 {
 	int		b_stack_size;
-	t_stack	*tmp;
 
 	b_stack_size = info->size_b;
 	while (num > 0 && num < b_stack_size)

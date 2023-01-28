@@ -24,7 +24,7 @@ int		ft_isdigit(int c);
 int		ft_issign(char c);
 int		ft_atoi(const char *str);
 void	print_error(int num);
-void	free_copy_a_tmp(t_info *info);
+void	free_stack(t_info *info);
 char	**ft_split(char const *s, char c);
 void	fill_stack(char *argv[], t_info *info);
 void	sort_stack(t_info *info);

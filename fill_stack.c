@@ -53,7 +53,6 @@ void	stack_push_copy_a(int split_num, t_info *info)
 
 void	fill_stack(char *argv[], t_info *info)
 {
-	t_stack	*tmp;
 	char	**split_num;
 	int		i;
 	int		j;
@@ -127,5 +126,4 @@ void	indexing_sort_stack(t_info *info)
 		a_tmp = a_tmp->next;
 		i++;
 	}
-	free_copy_a_tmp(info);
 }

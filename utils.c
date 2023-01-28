@@ -25,9 +25,9 @@ int	ft_issign(char c)
 
 int	ft_atoi(const char *str)
 {
-	long long	i;
+	int			i;
 	int			sign;
-	int			res;
+	long long	res;
 
 	i = 0;
 	sign = 1;
@@ -51,17 +51,28 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
-void	free_copy_a_tmp(t_info *info)
+void	free_stack(t_info *info)
 {
+	int i;
 	t_stack	*tmp;
-	t_stack	*copy_a_tmp;
 
-	copy_a_tmp = info->top_copy_a;
-	while (copy_a_tmp)
+	while (info->top_copy_a)
 	{
-		tmp = copy_a_tmp->next;
-		free(copy_a_tmp);
-		copy_a_tmp = tmp;
+		tmp = info->top_copy_a;
+		info->top_copy_a = tmp->next;
+		free(tmp);
+		tmp = NULL;
 	}
-	copy_a_tmp = NULL;
+	info->top_copy_a = NULL;
+	info->bottom_copy_a = NULL;
+	while (info->top_a)
+	{
+		tmp = info->top_a;
+		info->top_a = tmp->next;
+		free(tmp);
+		tmp = NULL;
+	}
+	info->top_a = NULL;
+	info->bottom_a = NULL;
+	free(info);
 }

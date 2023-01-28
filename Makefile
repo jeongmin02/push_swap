@@ -1,11 +1,12 @@
-CC = gcc
-CFLAGS = -Werror -Wextra -Wall
-SRCS_M = main.c utils.c ft_split.c swap.c push.c rotate.c reverse_rotate.c \
-		fill_stack.c sand_watch.c
-OBJS_M = main.o utils.o ft_split.o swap.o push.o rotate.o reverse_rotate.o \
-		fill_stack.o sand_watch.o
-AR = ar rcs
-NAME = push_swap.a
+CC		=	cc
+CFLAGS	=	-Werror -Wextra -Wall
+NAME	=	push_swap
+SRCS	=	main.c utils.c ft_split.c swap.c \
+			push.c rotate.c reverse_rotate.c \
+			fill_stack.c sand_watch.c hard_sort.c
+OBJS	=	main.o utils.o ft_split.o swap.o \
+			push.o rotate.o reverse_rotate.o \
+			fill_stack.o sand_watch.o hard_sort.o
 
 all : $(NAME)
 
@@ -13,13 +14,12 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -I includes -c $< -o $@
 
 clean :
-	rm -f $(OBJS_M) $(OBJS_B)
+	rm -f $(OBJS)
 
 fclean : clean
-	rm -f bonus
 	rm -f $(NAME)
 
-$(NAME) : $(OBJS_M)
-	ar rc $(NAME) $(OBJS_M)
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 re : fclean all

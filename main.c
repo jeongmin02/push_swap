@@ -46,22 +46,25 @@ void	check_duplicate(char *argv[])
 {
 	int	i;
 	int	j;
+	int	flag;
 
 	i = 1;
+	flag = 0;
 	while (argv[i])
 	{
 		j = i + 1;
 		while (argv[j])
 		{
 			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
-			{
 				print_error(1);
-				return ;
-			}
+			else if (ft_atoi(argv[i]) > ft_atoi(argv[j]))
+				flag++;
 			j++;
 		}
 		i++;
 	}
+	if (flag == 0)
+		print_error(-1);
 	return ;
 }
 
@@ -71,7 +74,6 @@ void	print_error(int num)
 		write(1, "ERROR\n", 6);
 	exit(1);
 }
-
 int	main(int argc, char *argv[])
 {
 	t_info	*info;
@@ -85,5 +87,8 @@ int	main(int argc, char *argv[])
 	sort_stack(info);
 	indexing_sort_stack(info);
 	sand_watch(info);
+	free_stack(info);
+	while(1)
+	{}
 	return (0);
 }
