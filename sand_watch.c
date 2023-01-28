@@ -1,13 +1,8 @@
 #include "push_swap.h"
 
-int	a_to_b(t_info *info, int num, int chunk)
+static void	a_to_b(t_info *info, int num, int chunk)
 {
-	int	i;
-	int	stack_a_size;
-
-	i = 0;
-	stack_a_size = info->size_a;
-	while (i < stack_a_size)
+	while (info->size_a > 0)
 	{
 		if (info->top_a->num <= num)
 		{
@@ -27,12 +22,10 @@ int	a_to_b(t_info *info, int num, int chunk)
 			else
 				ra(info);
 		}
-		i++;
 	}
-	return (num);
 }
 
-int	find_b(t_info *info, int num)
+static int	find_b(t_info *info, int num)
 {
 	int		i;
 	t_stack	*tmp;
@@ -49,14 +42,11 @@ int	find_b(t_info *info, int num)
 	return (i);
 }
 
-void	sort_b(t_info *info, int num)
+static void	sort_b(t_info *info, int num)
 {
-	int		b_stack_size;
-
-	b_stack_size = info->size_b;
-	while (num > 0 && num < b_stack_size)
+	while (num > 0 && num < info->size_b)
 	{
-		if (num <= b_stack_size / 2)
+		if (num <= info->size_b / 2)
 		{
 			rb(info);
 			num--;
@@ -69,7 +59,7 @@ void	sort_b(t_info *info, int num)
 	}
 }
 
-void	b_to_a(t_info *info)
+static void	b_to_a(t_info *info)
 {
 	int	num;
 	int	i;
@@ -86,28 +76,23 @@ void	b_to_a(t_info *info)
 
 void	sand_watch(t_info *info)
 {
-	int	num;
 	int	chunk;
-	int	stack_a_size;
 
-	stack_a_size = info->size_a;
-	if (stack_a_size < 6)
+	if (info->size_a < 6)
 	{
 		hard_sort(info);
 		return ;
 	}
-	else if (stack_a_size < 500)
+	else if (info->size_a < 500)
 		chunk = 15;
-	else if (stack_a_size < 1000)
+	else if (info->size_a < 1000)
 		chunk = 30;
-	else if (stack_a_size < 2000)
+	else if (info->size_a < 2000)
 		chunk = 45;
-	else if (stack_a_size < 5000)
+	else if (info->size_a < 5000)
 		chunk = 60;
 	else
 		chunk = 150;
-	num = 0;
-	while (num < stack_a_size)
-		num = a_to_b(info, num, chunk);
+	a_to_b(info, 0, chunk);
 	b_to_a(info);
 }

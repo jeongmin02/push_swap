@@ -20,19 +20,20 @@ void	sort_a(t_info *info)
 void	hard_sort(t_info *info)
 {
 	t_stack	*tmp;
-	int		stack_a_size;
 
 	tmp = info->top_a;
-	stack_a_size = info->size_a;
 	while (info->top_a && info->size_a > 3)
 	{
-		if (info->top_a->num < ((stack_a_size - 1) / 2))
+		if (info->top_a->num < (info->size_a / 2))
 			pb(info);
 		else
 			ra(info);
 	}
-	sort_a(info);
-	if (stack_a_size > 3)
+	if (info->size_a == 2)
+		sa(info);
+	else
+		sort_a(info);
+	if (info->size_b > 0)
 	{
 		tmp = info->top_b;
 		if (info->size_b > 1)

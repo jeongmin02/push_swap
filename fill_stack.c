@@ -69,6 +69,7 @@ void	fill_stack(char *argv[], t_info *info)
 			info->size_a++;
 			j++;
 		}
+		free_arr(split_num);
 		i++;
 	}
 }

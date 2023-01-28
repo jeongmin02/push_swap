@@ -34,15 +34,13 @@ void	rr(t_info *info)
 {
 	t_stack	*tmp;
 
-	if (info->size_a < 2)
+	if (info->size_a < 2 || info->size_b < 2)
 		return ;
 	tmp = info->top_a;
 	info->top_a = info->top_a->next;
 	info->bottom_a->next = tmp;
 	info->bottom_a = tmp;
 	info->bottom_a->next = NULL;
-	if (info->size_b < 2)
-		return ;
 	tmp = info->top_b;
 	info->top_b = info->top_b->next;
 	info->bottom_b->next = tmp;

@@ -41,7 +41,7 @@ static char	*fill_word(char const *s, char c, int i)
 
 	word = (char *)malloc(sizeof(char) * (word_len(s, c, i) + 1));
 	if (!word)
-		return (NULL);
+		print_error(-1);
 	j = 0;
 	while (s[i] && s[i] != c)
 	{
@@ -73,7 +73,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	res = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1));
 	if (!res)
-		return (NULL);
+		print_error(-1);
 	x = 0;
 	i = 0;
 	while (x < count_word(s, c))

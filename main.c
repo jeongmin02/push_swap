@@ -8,7 +8,7 @@ t_info	*ft_info_new(void)
 
 	info = (t_info *)malloc(sizeof(t_info));
 	if (!info)
-		return (NULL);
+		print_error(-1);
 	info->size_a = 0;
 	info->top_a = NULL;
 	info->bottom_a = NULL;
@@ -74,6 +74,7 @@ void	print_error(int num)
 		write(1, "ERROR\n", 6);
 	exit(1);
 }
+
 int	main(int argc, char *argv[])
 {
 	t_info	*info;
@@ -88,7 +89,5 @@ int	main(int argc, char *argv[])
 	indexing_sort_stack(info);
 	sand_watch(info);
 	free_stack(info);
-	while(1)
-	{}
 	return (0);
 }

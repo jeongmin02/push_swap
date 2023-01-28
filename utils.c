@@ -50,29 +50,3 @@ int	ft_atoi(const char *str)
 		print_error(1);
 	return (res);
 }
-
-void	free_stack(t_info *info)
-{
-	int i;
-	t_stack	*tmp;
-
-	while (info->top_copy_a)
-	{
-		tmp = info->top_copy_a;
-		info->top_copy_a = tmp->next;
-		free(tmp);
-		tmp = NULL;
-	}
-	info->top_copy_a = NULL;
-	info->bottom_copy_a = NULL;
-	while (info->top_a)
-	{
-		tmp = info->top_a;
-		info->top_a = tmp->next;
-		free(tmp);
-		tmp = NULL;
-	}
-	info->top_a = NULL;
-	info->bottom_a = NULL;
-	free(info);
-}

@@ -3,10 +3,12 @@ CFLAGS	=	-Werror -Wextra -Wall
 NAME	=	push_swap
 SRCS	=	main.c utils.c ft_split.c swap.c \
 			push.c rotate.c reverse_rotate.c \
-			fill_stack.c sand_watch.c hard_sort.c
+			fill_stack.c sand_watch.c hard_sort.c \
+			free.c
 OBJS	=	main.o utils.o ft_split.o swap.o \
 			push.o rotate.o reverse_rotate.o \
-			fill_stack.o sand_watch.o hard_sort.o
+			fill_stack.o sand_watch.o hard_sort.o \
+			free.o
 
 all : $(NAME)
 
